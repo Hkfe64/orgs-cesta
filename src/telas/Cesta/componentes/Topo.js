@@ -6,11 +6,11 @@ import Texto from "../../../componentes/Texto";
 
 const width = Dimensions.get("screen").width;
 
-export default function Topo() {
+export default function Topo({ titulo }) {
   return (
     <>
       <Image style={estilos.topo} source={topo} />
-      <Texto style={estilos.titulo}>Detalhe da cesta</Texto>
+      <Texto style={estilos.titulo}>{titulo}</Texto>
     </>
   );
 }
