@@ -6,9 +6,10 @@ import {
   Montserrat_400Regular,
   Montserrat_700Bold,
 } from "@expo-google-fonts/montserrat";
-import SplashScreen from "expo-splash-screen";
+import { preventAutoHideAsync, hideAsync } from "expo-splash-screen";
 
 import cesta from "./src/mocks/cesta";
+import { useCallback, useEffect } from "react";
 
 // Keep the splash screen visible while we fetch resources
 export default function App() {
@@ -19,14 +20,22 @@ export default function App() {
 
   useEffect(() => {
     async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
+      try {
+        await preventAutoHideAsync();
+      } catch (error) {
+        console.warn(`Erro ${error}`);
+      }
     }
     prepare();
   }, []);
 
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
+    try {
+      if (fontsLoaded) {
+        await hideAsync();
+      }
+    } catch (error) {
+      console.warn(`Erro ${error}`);
     }
   }, [fontsLoaded]);
 
@@ -34,7 +43,7 @@ export default function App() {
     return null;
   }
   return (
-    <View>
+    <View onLayout={onLayoutRootView}>
       <StatusBar />
       <Cesta {...cesta} />
     </View>
