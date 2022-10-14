@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import {
+  Button,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import Botao from "../../../componentes/Botao";
 import Texto from "../../../componentes/Texto";
 
 export default function Detalhes({
@@ -8,6 +15,7 @@ export default function Detalhes({
   nomeFazenda,
   descricao,
   preco,
+  botao,
 }) {
   return (
     <>
@@ -18,6 +26,7 @@ export default function Detalhes({
       </View>
       <Texto style={estilos.descricao}>{descricao}</Texto>
       <Texto style={estilos.preco}>{preco}</Texto>
+      <Botao>{botao}</Botao>
     </>
   );
 }
