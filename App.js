@@ -1,4 +1,4 @@
-import { StatusBar, View } from "react-native";
+import { SafeAreaView, StatusBar, View } from "react-native";
 import Cesta from "./src/telas/Cesta";
 
 import {
@@ -43,9 +43,9 @@ export default function App() {
     return null;
   }
   return (
-    <View onLayout={onLayoutRootView}>
+    <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <StatusBar />
       <Cesta {...cesta} />
-    </View>
+    </SafeAreaView>
   );
 }
